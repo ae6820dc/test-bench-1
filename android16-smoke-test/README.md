@@ -49,9 +49,20 @@ requests, and manual dispatch. It builds/lints/signature-checks the APK, uploads
 Download and extract the APK artifact from the workflow run's **Artifacts** list.
 The APK remains downloadable even if the separate runtime job fails.
 
-## Verification status in this workspace
+## Verified GitHub Actions result
 
-Build and device verification are pending: this workspace has no Android SDK,
-Gradle, connected device, or emulator, and its configured network proxy refuses
-connections, preventing toolchain downloads. Static checks are not a substitute
-for an APK build. No successful build or Android 16 runtime test is claimed.
+[Run 37818478580](https://github.com/ae6820dc/test-bench-1/actions/runs/37818478580)
+verified source commit `ef5ae95e99291dae271915b8f5565d846b8510b6` on 2026-10-08:
+
+- Debug APK build and Android lint passed.
+- `apksigner verify` passed (APK Signature Scheme v2).
+- `android16-smoke-test-debug-apk` was uploaded.
+- The Android 16/API 36 emulator install-and-launch smoke test passed, including
+  visible heartbeat, 60-second process survival, and pause/resume.
+- `android16-runtime-evidence` was uploaded with screenshot and diagnostic logs.
+
+These are emulator results, not verification on a physical Android 16 device.
+The local workspace build remains blocked by its unavailable network proxy and
+missing Android SDK/Gradle; the actual build and runtime validation ran in GitHub
+Actions instead. The first CI attempt failed on the SDK setup action's obsolete
+`tools` default; the workflow now explicitly requests `platform-tools`.
