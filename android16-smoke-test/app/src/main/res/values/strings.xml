@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="test_title">Android test is running</string>
+    <string name="test_description">Native Android launch test</string>
+    <string name="device_version">Android %1$s · API %2$d</string>
+    <string name="heartbeat">Active for %1$d seconds</string>
+</resources>
