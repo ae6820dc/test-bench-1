@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="display_info" type="id" />
+    <item name="requested_info" type="id" />
+    <item name="mode_list" type="id" />
+    <item name="supported_radio" type="id" />
+    <item name="custom_radio" type="id" />
+    <item name="supported_spinner" type="id" />
+    <item name="custom_seek" type="id" />
+    <item name="custom_value" type="id" />
+    <item name="minus" type="id" />
+    <item name="plus" type="id" />
+    <item name="apply" type="id" />
+    <item name="automatic" type="id" />
+    <item name="motion_start" type="id" />
+    <item name="motion_stop" type="id" />
+    <item name="motion_status" type="id" />
+    <item name="motion_view" type="id" />
+    <item name="app_status" type="id" />
+</resources>

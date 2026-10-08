@@ -1,0 +1,102 @@
+name: Hz Lab Android 16 validation
+
+on:
+  push:
+    branches: [main, 'hz-lab-validation']
+    paths:
+      - 'hz-lab/**'
+      - '.github/workflows/hz-lab.yml'
+  pull_request:
+    paths:
+      - 'hz-lab/**'
+      - '.github/workflows/hz-lab.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: hz-lab
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@v3
+        with:
+          packages: platform-tools
+          log-accepted-android-sdk-licenses: false
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.13'
+      - name: Install pinned SDK packages
+        run: sdkmanager 'platforms;android-36' 'build-tools;36.0.0'
+      - name: Build and lint debug APK
+        run: gradle --no-daemon --stacktrace :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug
+      - name: Verify APK signature
+        run: '"$ANDROID_HOME/build-tools/36.0.0/apksigner" verify --verbose app/build/outputs/apk/debug/app-debug.apk'
+      - name: Upload installable debug APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: hz-lab-debug-apk
+          path: hz-lab/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
+          retention-days: 30
+      - name: Upload control-test APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: hz-lab-test-apk
+          path: hz-lab/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
+          if-no-files-found: error
+          retention-days: 30
+
+  android16-runtime:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: hz-lab-debug-apk
+          path: hz-lab/downloaded-apk
+      - uses: actions/download-artifact@v4
+        with:
+          name: hz-lab-test-apk
+          path: hz-lab/downloaded-apk
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@v3
+        with:
+          packages: platform-tools
+          log-accepted-android-sdk-licenses: false
+      - name: Enable KVM access
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Install and launch on Android 16
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 36
+          target: google_apis
+          arch: x86_64
+          disable-animations: true
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          script: bash hz-lab/scripts/smoke-test.sh hz-lab/downloaded-apk/app-debug.apk hz-lab/downloaded-apk/app-debug-androidTest.apk hz-lab/smoke-results
+      - name: Upload runtime evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: android16-runtime-evidence
+          path: hz-lab/smoke-results/
+          if-no-files-found: warn
+          retention-days: 30

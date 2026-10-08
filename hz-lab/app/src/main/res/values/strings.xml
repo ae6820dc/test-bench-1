@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title">Hz Lab</string>
+    <string name="scope">Csak a Hz Lab ablakának frissítési preferenciája. Nem állandó, telefonra érvényes beállítás. Az Android, az energiatakarékosság vagy a készülék felülbírálhatja a kérést.</string>
+    <string name="display_heading">Android által jelentett kijelző</string>
+    <string name="display_info">Jelentett frissítés: %1$s Hz\nAktív mód: #%2$d · %3$s Hz\nFelbontás: %4$d × %5$d px</string>
+    <string name="display_note">Ezek az Android által közölt adatok, nem fizikai mérés. Adaptív kijelzőn a mód névleges Hz-e és a jelentett frissítés eltérhet.</string>
+    <string name="no_display">A kijelző adatai most nem érhetők el.</string>
+    <string name="request_heading">Kérés és beállítás</string>
+    <string name="supported_choice">Támogatott mód, jelenlegi felbontással</string>
+    <string name="custom_choice">Egyéni Hz-preferencia</string>
+    <string name="supported_label">%1$s Hz · #%2$d · %3$d × %4$d</string>
+    <string name="no_same_resolution">Nincs választható mód a jelenlegi felbontáson.</string>
+    <string name="custom_value">Egyéni kérés: %1$s Hz</string>
+    <string name="custom_range">Tartomány: 30–%1$s Hz. Lépés: 1 Hz; tört maximum esetén az utolsó érték a pontos maximum. Ez preferencia, nem garantált fizikai kijelzőmód.</string>
+    <string name="custom_unavailable">A jelentett maximum 30 Hz alatt van; az egyéni kérés nem elérhető.</string>
+    <string name="decrease">Csökkentés 1 Hz-cel</string>
+    <string name="increase">Növelés 1 Hz-cel</string>
+    <string name="minus">−1 Hz</string>
+    <string name="plus">+1 Hz</string>
+    <string name="apply">Alkalmazás</string>
+    <string name="automatic">Automatikus / Rendszer</string>
+    <string name="automatic_state">Ablakpreferencia: Automatikus / Rendszer\nNincs app által kért Hz vagy mód.</string>
+    <string name="requested_custom">Kért ablakpreferencia: %1$s Hz (egyéni)\nEz nem igazolja a tényleges frissítés megváltozását.</string>
+    <string name="requested_mode">Kért ablakpreferencia: %1$s Hz · mód #%2$d\nKérés felbontása: %3$d × %4$d px\nA rendszer által jelentett állapot fent látható.</string>
+    <string name="request_error">A kérés nem adható át. Az aktuális Android-adatok fent láthatók.</string>
+    <string name="mode_missing">A kiválasztott mód ezen a felbontáson már nem elérhető. Automatikus módra álltunk.</string>
+    <string name="saved">Az Alkalmazás menti a választást. Az Automatikus / Rendszer törli az app összes saját frissítési preferenciáját és a mentett kérést.</string>
+    <string name="motion_heading">Mozgásteszt (opcionális)</string>
+    <string name="motion_description">Az időalapú mozgás megfigyelésre szolgál. Nem méri és nem bizonyítja a fizikai kijelző Hz-ét.</string>
+    <string name="motion_start">Mozgás indítása</string>
+    <string name="motion_stop">Mozgás leállítása</string>
+    <string name="motion_idle">Mozgásteszt: leállítva</string>
+    <string name="motion_running">Mozgásteszt: fut · rajzolási callbackek: %1$d</string>
+    <string name="motion_paused">Mozgásteszt: szünetel a háttérben</string>
+    <string name="motion_accessibility">Vízszintesen mozgó pont a mozgásteszthez</string>
+    <string name="all_modes_heading">Összes támogatott kijelzőmód</string>
+    <string name="mode_row">#%1$d · %2$d × %3$d px · %4$s Hz%5$s</string>
+    <string name="mode_safe"> · választható ezen a felbontáson</string>
+    <string name="mode_other"> · más felbontás, nem választható</string>
+    <string name="status">Előtérben · futás: %1$d s · folytatások: %2$d</string>
+</resources>
