@@ -89,3 +89,8 @@ That exact tested commit was promoted to main after successful checks.
 The emulator exposes a 60 Hz mode. Requesting another Hz preference was tested by
 inspecting app window attributes; no physical panel switching is proven by this
 result. Hz Lab has not yet been validated on a physical Android 16 phone.
+
+The subsequent [main workflow run 37825944993](https://github.com/ae6820dc/test-bench-1/actions/runs/37825944993)
+also passed both build and API 36 runtime jobs for the same source commit.
+[Download the main run's signed debug APK](https://github.com/ae6820dc/test-bench-1/actions/runs/37825944993/artifacts/11570839303)
+and extract `app-debug.apk`.
