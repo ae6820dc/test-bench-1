@@ -68,3 +68,24 @@ These tests verify app behavior, not physical refresh-rate switching on a phone.
 verifies the debug APK signature, uploads `hz-lab-debug-apk`, and runs the API 36
 smoke test with that exact APK. `hz-lab-test-apk` is test-only, not the user app.
 Validation runs first on `hz-lab-validation`, then main after successful checks.
+
+## Actual validation result
+
+[GitHub Actions run 37825181557](https://github.com/ae6820dc/test-bench-1/actions/runs/37825181557)
+passed on 2026-10-08 for commit `6ae54913357336adfa0b79bc2f78238261ca7141`.
+That exact tested commit was promoted to main after successful checks.
+
+- `build`: success; app and test APK build, Android lint, and app signature
+  verification (APK Signature Scheme v2) passed.
+- `android16-runtime`: success; API 36 install/launch, native control assertions,
+  supported-mode resolution safety, custom bounds and steps, saved-selection
+  relaunch, Automatic clearing, 61 seconds of motion callbacks, Stop, and normal
+  Home/background/resume passed.
+- [Download debug app APK artifact](https://github.com/ae6820dc/test-bench-1/actions/runs/37825181557/artifacts/11570733478)
+  and extract `app-debug.apk`. Do not install the separate test APK for normal use.
+- [Runtime evidence](https://github.com/ae6820dc/test-bench-1/actions/runs/37825181557/artifacts/11571690245)
+  includes screenshot, control assertions, UI XML, launch/resume and crash logs.
+
+The emulator exposes a 60 Hz mode. Requesting another Hz preference was tested by
+inspecting app window attributes; no physical panel switching is proven by this
+result. Hz Lab has not yet been validated on a physical Android 16 phone.
