@@ -20,9 +20,8 @@ The working launch-test project is preserved. Minimum API 31, target/compile API
   Values start at 30 and advance by 1 Hz to the maximum across all reported modes;
   a fractional maximum is included as a final endpoint. It does not create modes.
   The system chooses whether/how to honor the preference and may override it.
-- Automatic clears `preferredDisplayModeId`, `preferredRefreshRate`,
-  `preferredMinDisplayRefreshRate` and `preferredMaxDisplayRefreshRate`, and removes
-  the saved selection. No Surface/View frame-rate requests are set by the app.
+- Automatic clears both public preferences set by this app:
+  `preferredDisplayModeId` and `preferredRefreshRate`, and removes the saved selection. No Surface/View frame-rate requests are set by the app.
 - Apply saves the selection in app-private preferences. It does not report a
   successful physical switch. The requested value and independently reported
   Android state always appear separately.

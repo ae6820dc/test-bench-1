@@ -32,8 +32,7 @@ public final class SmokeInstrumentation extends Instrumentation {
     }
     private void automaticCleared() {
         WindowManager.LayoutParams p = activity.getWindow().getAttributes();
-        check(p.preferredDisplayModeId == 0 && p.preferredRefreshRate == 0
-                && p.preferredMinDisplayRefreshRate == 0 && p.preferredMaxDisplayRefreshRate == 0,
+        check(p.preferredDisplayModeId == 0 && p.preferredRefreshRate == 0,
                 "Automatic did not clear window preferences");
         check(!activity.getSharedPreferences("selection", 0).contains("hz"),
                 "Automatic did not clear saved request");

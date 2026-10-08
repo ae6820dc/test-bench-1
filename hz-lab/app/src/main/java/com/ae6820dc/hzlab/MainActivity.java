@@ -266,8 +266,6 @@ public final class MainActivity extends Activity implements DisplayManager.Displ
     private void clearAttributes(WindowManager.LayoutParams attributes) {
         attributes.preferredDisplayModeId = 0;
         attributes.preferredRefreshRate = 0;
-        attributes.preferredMinDisplayRefreshRate = 0;
-        attributes.preferredMaxDisplayRefreshRate = 0;
     }
     private void automatic() {
         WindowManager.LayoutParams attributes = getWindow().getAttributes();
